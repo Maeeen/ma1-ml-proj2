@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import torch.nn as nn
-from torch.utils.data import TensorDataset, DataLoader
+from torch.utils.data import DataLoader
 
 from road_segmentation.augmentation import *
 
