@@ -43,4 +43,6 @@ Dependencies can be managed by conda in the following way. This ensures reproduc
 conda install -n road-segmentation python=3.10
 conda activate road-segmentation
 conda env update --file environment.yml --prune
+
+pip install -e .
 ```
