@@ -1,3 +1,9 @@
+import matplotlib.pyplot as plt
+import torch.nn as nn
+from torch.utils.data import TensorDataset, DataLoader
+
+from road_segmentation.augmentation import augment_data, rot90, rot180, rot270, fliph, flipv, flipvh
+
 def visualize_augmented_data(src, gt):
   rot90_images, rot90_gt = rot90(src, gt)
   rot180_images, rot180_gt = rot180(src, gt)
