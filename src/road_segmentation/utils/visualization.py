@@ -2,15 +2,17 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 
-from road_segmentation.augmentation import augment_data, rot90, rot180, rot270, fliph, flipv, flipvh
+from road_segmentation.augmentation import *
 
 def visualize_augmented_data(src, gt):
   rot90_images, rot90_gt = rot90(src, gt)
-  rot180_images, rot180_gt = rot180(src, gt)
   rot270_images, rot270_gt = rot270(src, gt)
   fliph_images, fliph_gt = fliph(src, gt)
   flipv_images, flipv_gt = flipv(src, gt)
   flipvh_images, flipvh_gt = flipvh(src, gt)
+  imgs_contrast, gt_imgs_contrast = augment_contrast(src, gt)
+  imgs_contrast2, gt_imgs_contrast2 = augment_contrast(src, gt, 2)
+  imgs_holes, gt_imgs_holes = holes(src, gt, 5)
   fig = plt.figure(figsize=(50, 15))
   fig.add_subplot(2, 7, 1)
   plt.imshow(src[0])
@@ -19,8 +21,8 @@ def visualize_augmented_data(src, gt):
   plt.imshow(rot90_images[0])
   plt.title("Rotated 90")
   fig.add_subplot(2, 7, 3)
-  plt.imshow(rot180_images[0])
-  plt.title("Rotated 180")
+  plt.imshow(imgs_contrast[0])
+  plt.title("Image contrast")
   fig.add_subplot(2, 7, 4)
   plt.imshow(rot270_images[0])
   plt.title("Rotated 270")
@@ -28,11 +30,11 @@ def visualize_augmented_data(src, gt):
   plt.imshow(fliph_images[0])
   plt.title("Flip Horizontal")
   fig.add_subplot(2, 7, 6)
-  plt.imshow(flipv_images[0])
-  plt.title("Flip Vertical")
+  plt.imshow(imgs_contrast2[0])
+  plt.title("Image contrast 2")
   fig.add_subplot(2, 7, 7)
-  plt.imshow(flipvh_images[0])
-  plt.title("Flip Both")
+  plt.imshow(imgs_holes[0])
+  plt.title("Holes")
   fig.add_subplot(2, 7, 8)
   plt.imshow(gt[0])
   plt.title("Original GT")
@@ -40,8 +42,8 @@ def visualize_augmented_data(src, gt):
   plt.imshow(rot90_gt[0])
   plt.title("Rotated 90")
   fig.add_subplot(2, 7, 10)
-  plt.imshow(rot180_gt[0])
-  plt.title("Rotated 180")
+  plt.imshow(gt_imgs_contrast[0])
+  plt.title("Image contrast")
   fig.add_subplot(2, 7, 11)
   plt.imshow(rot270_gt[0])
   plt.title("Rotated 270")
@@ -49,11 +51,11 @@ def visualize_augmented_data(src, gt):
   plt.imshow(fliph_gt[0])
   plt.title("Flip Horizontal")
   fig.add_subplot(2, 7, 13)
-  plt.imshow(flipv_gt[0])
-  plt.title("Flip Vertical")
+  plt.imshow(gt_imgs_contrast2[0])
+  plt.title("Image contrast 2")
   fig.add_subplot(2, 7, 14)
-  plt.imshow(flipvh_gt[0])
-  plt.title("Flip Both")
+  plt.imshow(gt_imgs_holes[0])
+  plt.title("Holes")
   plt.show()
   
 def visualize_result(device, model, dataset):
