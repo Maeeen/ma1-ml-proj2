@@ -2,9 +2,6 @@ import numpy as np
 from scipy import ndimage
 from PIL import Image, ImageEnhance
 from skimage import io 
-# from keras.preprocessing.image import load_img
-# from keras.preprocessing.image import img_to_array
-# from keras.preprocessing.image import ImageDataGenerator
 
 
 
@@ -21,16 +18,6 @@ def rot135(imgs, gt_imgs):
     imgs_rot135 = np.asarray([np.clip(ndimage.rotate(img, 135, reshape=False), 0, 1) for img in imgs])
     gt_imgs_rot135 = np.asarray([np.clip(ndimage.rotate(gt_img, 135, reshape=False), 0, 1) for gt_img in gt_imgs])
     return imgs_rot135, gt_imgs_rot135
-
-
-# def augment_contrast(imgs, gt_imgs):
-#     datagen = ImageDataGenerator(brightness_range=[0.5, 2.0])
-#     augmented_imgs = []
-#     for img in imgs:
-#         img_batch = np.expand_dims(img, axis=0)
-#         for augmented_img in datagen.flow(img_batch, batch_size=1):
-#             augmented_imgs.append(augmented_img[0])
-#     return np.array(augmented_imgs), gt_imgs
 
 
 def rot90(imgs, gt_imgs):
@@ -95,23 +82,28 @@ def augment_data(imgs, gt_imgs):
 
     imgs_contrast, gt_imgs_contrast = augment_contrast(imgs, gt_imgs)
     imgs_contrast2, gt_imgs_contrast2 = augment_contrast(imgs, gt_imgs, 2)
+    imgs_contrast05, gt_imgs_contrast05 = augment_contrast(imgs, gt_imgs, 0.5)
 
     imgs_flipped, gt_imgs_flipped = fliph(imgs, gt_imgs)
     imgs_flipped2, gt_imgs_flipped2 = flipv(imgs, gt_imgs)
     
+    imgs_contr_rot, gt_imgs_contr_rot = rot45(imgs_contrast, gt_imgs_contrast)
+
     imgs_holes, gt_imgs_holes = holes(imgs, gt_imgs, 5)
 
     imgs = np.concatenate((
         imgs, imgs_90, imgs_180, imgs_270, imgs_45, imgs_135, 
-        imgs_contrast, imgs_contrast2,
+        imgs_contrast, imgs_contrast2, imgs_contrast05,
         imgs_flipped, imgs_flipped2,
-        imgs_holes
+        imgs_holes, imgs_contr_rot
     ))
     gt_imgs = np.concatenate((
         gt_imgs, gt_imgs_90, gt_imgs_180, gt_imgs_270, gt_imgs_45, gt_imgs_135,
-        gt_imgs_contrast,gt_imgs_contrast2,
+        gt_imgs_contrast,gt_imgs_contrast2, gt_imgs_contrast05,
         gt_imgs_flipped, gt_imgs_flipped2,
-        gt_imgs_holes
+        gt_imgs_holes, gt_imgs_contr_rot
     ))
+
+
 
     return imgs, gt_imgs

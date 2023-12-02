@@ -1,4 +1,4 @@
-from road_segmentation.mask_to_submission import masks_to_submission
+from src.road_segmentation.mask_to_submission import masks_to_submission
 from .image import img_float_to_uint8, load_image
 
 from PIL import Image

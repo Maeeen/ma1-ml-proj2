@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from road_segmentation.augmentation import *
+from src.road_segmentation.augmentation import *
 
 def visualize_augmented_data(src, gt):
   rot90_images, rot90_gt = rot90(src, gt)
