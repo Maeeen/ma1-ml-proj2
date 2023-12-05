@@ -28,7 +28,7 @@ def mask_to_submission_strings(image_filename):
             yield("{:03d}_{}_{},{}".format(img_number, j, i, label))
 
 
-def masks_to_submission(submission_filename, *image_filenames):
+def masks_to_submission(submission_filename, *image_filenames, foreground_threshold=0.25):
     """Converts images into a submission file"""
     with open(submission_filename, 'w') as f:
         f.write('id,prediction\n')
