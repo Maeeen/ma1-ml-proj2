@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import torch.nn as nn
 from torch.utils.data import DataLoader
+import torchvision.transforms.functional as F
+import torch
 
 from road_segmentation.augmentation import *
 
@@ -81,5 +83,45 @@ def visualize_result(device, model, dataset):
     im = plt.imshow(nn.Sigmoid()(output.cpu().detach()).numpy())
     fig.colorbar(im, fraction=0.046, pad=0.04)
     plt.title("Prediction")
+    fig.add_subplot(1, 4, 4)
+    y = nn.Sigmoid()(output.cpu().detach())
+    im = plt.imshow(nn.Sigmoid()(output.cpu().detach()*3).numpy()) # adjust sharpness
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    plt.title("Adjusted")
+    plt.show()
+    break
+
+def visualize_stages(device, model, dataset):
+  model.eval()
+  pytorchDl = DataLoader(dataset, batch_size=2, shuffle=True)
+  for i, (data, target) in enumerate(pytorchDl):
+    data = data.squeeze()
+    target = target.squeeze()
+    inputs = data.to(device)
+    history = model.forward(inputs, stages=True)
+    history = torch.stack([h[0] for h in history])
+    
+    data, target = data[0].cpu().numpy().transpose((1, 2, 0)), target[0].cpu().numpy()
+
+    fig = plt.figure(figsize=(15, 15))
+    fig.add_subplot(1, 5, 1)
+    im = plt.imshow(data)
+    plt.title("Original Image")
+    fig.add_subplot(1, 5, 2)
+    im = plt.imshow(target)
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    plt.title("Ground truth")
+    fig.add_subplot(1, 5, 3)
+    im = plt.imshow(nn.Sigmoid()(history[1].squeeze().cpu().detach()).numpy())
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    plt.title("Prediction 1")
+    fig.add_subplot(1, 5, 4)
+    im = plt.imshow(nn.Sigmoid()(history[2].squeeze().cpu().detach()).numpy())
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    plt.title("Prediction 2")
+    fig.add_subplot(1, 5, 5)
+    im = plt.imshow(nn.Sigmoid()(history[3].squeeze().cpu().detach()).numpy())
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    plt.title("Prediction 3")
     plt.show()
     break
