@@ -40,6 +40,12 @@ def fliph(imgs, gt_imgs):
     gt_imgs_flipped = np.asarray([np.flipud(gt_imgs[i]) for i in range(len(gt_imgs))])
     return imgs_flipped, gt_imgs_flipped
 
+def noise(imgs, gt_imgs, noise_scale=0.1):
+    no = np.random.normal(loc=0.0, scale=noise_scale, size=imgs.shape)
+
+    imgs_noise = np.asarray([np.clip(img + n, 0, 1) for img, n in zip(imgs, no)])
+    return imgs_noise, gt_imgs  
+
 def flipv(imgs, gt_imgs):
     imgs_flipped = np.asarray([np.fliplr(np.flipud(imgs[i])) for i in range(len(imgs))])
     gt_imgs_flipped = np.asarray([np.fliplr(np.flipud(gt_imgs[i])) for i in range(len(gt_imgs))])
@@ -86,6 +92,8 @@ def augment_data(imgs, gt_imgs):
 
     imgs_flipped, gt_imgs_flipped = fliph(imgs, gt_imgs)
     imgs_flipped2, gt_imgs_flipped2 = flipv(imgs, gt_imgs)
+
+    imgs_noise, gt_imgs_noise = flipv(imgs, gt_imgs)
     
     imgs_contr_rot, gt_imgs_contr_rot = rot45(imgs_contrast, gt_imgs_contrast)
 

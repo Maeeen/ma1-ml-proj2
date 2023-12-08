@@ -7,7 +7,8 @@ from src.road_segmentation.augmentation import *
 def visualize_augmented_data(src, gt):
   rot90_images, rot90_gt = rot90(src, gt)
   rot270_images, rot270_gt = rot270(src, gt)
-  fliph_images, fliph_gt = fliph(src, gt)
+  # fliph_images, fliph_gt = fliph(src, gt)
+  fliph_images, fliph_gt = noise(src, gt)
   flipv_images, flipv_gt = flipv(src, gt)
   flipvh_images, flipvh_gt = flipvh(src, gt)
   imgs_contrast, gt_imgs_contrast = augment_contrast(src, gt)
@@ -28,7 +29,7 @@ def visualize_augmented_data(src, gt):
   plt.title("Rotated 270")
   fig.add_subplot(2, 7, 5)
   plt.imshow(fliph_images[0])
-  plt.title("Flip Horizontal")
+  plt.title("Noise")
   fig.add_subplot(2, 7, 6)
   plt.imshow(imgs_contrast2[0])
   plt.title("Image contrast 2")
