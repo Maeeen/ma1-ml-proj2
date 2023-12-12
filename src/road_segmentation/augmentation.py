@@ -110,5 +110,12 @@ def augment_data(imgs, gt_imgs):
     # concatenate
     imgs, gt_imgs = np.concatenate((imgs, imgs_holes)), np.concatenate((gt_imgs, gt_imgs_holes))
 
+    permutation = np.random.permutation(len(imgs))
+    imgs = imgs[permutation]
+    gt_imgs = gt_imgs[permutation]
+    
+    if len(imgs) > 70000:
+        imgs = imgs[:70000]
+        gt_imgs = gt_imgs[:70000]
 
     return imgs, gt_imgs
