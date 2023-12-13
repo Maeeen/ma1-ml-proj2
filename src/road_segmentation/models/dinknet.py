@@ -144,7 +144,7 @@ class DinkNet34(nn.Module):
         super(DinkNet34, self).__init__()
 
         filters = [64, 128, 256, 512]
-        resnet = models.resnet34(pretrained=True)
+        resnet = models.resnet34()
         self.firstconv = resnet.conv1
         self.firstbn = resnet.bn1
         self.firstrelu = resnet.relu
