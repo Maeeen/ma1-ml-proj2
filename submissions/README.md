@@ -1,10 +1,40 @@
-# Submissions
+# Submissions and pre-trained models
 
 CSV files for the different submissions.
 
-When graded on AICrowd, try to rename them with their corresponding scores (and submission date).
+* UNET1: `unet-marwan1.csv`
+  * Submission date: 01/12/2023 @ 3:35
+  * Model: `UNet`
+  * Model weights (PyTorch CUDA 12.1): `unet-marwan1.pth`
+  * Submission file: `submission_marwan1.csv`
+  * Submission threshold: `0.25`
+  * AIcrowd F1: `0.899`
+  * Test F1: `0.848`
+  * AIcrowd rank: `3`
+  * Applied constrast for test/validation set: coefficient `2×`
+  * Training epochs: between 250 and 350
+  * Augmentation function used: `augment_data` (see `data_augmentation.py`)
 
-* `submission_marwan1.csv`: 01/12/2023 @ 3:35, model weights: marwan1.pth, UNet, submission threshold: .25, score: 0.899, applied constrast for test set (coeff 2*), 250-350 epochs
-* `0.902 (submission very augmented dataset).csv`: 05/12/2023 @ 3:25, model weights: same name, UNet, huge augmentation, submission threshold: .1, post-contrast=2
-  * The model was trained on a very augmented dataset (see `data_augmentation.py`), with 250-350 epochs.
-  * However, the `.pth` file seems to be corrupted.
+* UNET2: `unet-marwan2.csv`
+  * Submission date: 05/12/2023 @ 3:25
+  * Model: `UNet`
+  * Model weights (PyTorch CUDA 12.1): `unet-marwan2.pth`
+  * Submission file: `submission_marwan2.csv`
+  * Submission threshold: `0.1`
+  * AIcrowd F1: `0.902`
+  * AIcrowd rank: `2`
+  * Applied constrast for test/validation set: coefficient `2×`
+  * Training epochs: between 250 and 350
+  * Augmentation function used: `huge_augment_data` (see `data_augmentation.py`)
+
+* DinkNET: `dinknet.csv`
+  * Submission date: 13/12/2023 @ 23:39
+  * Model: `DinkNet`
+  * Model weights (PyTorch CUDA 12.1): `dinknet.pth`
+  * Submission file: `dinknet.csv`
+  * Submission threshold: `0.136`
+  * AIcrowd F1: `0.901`
+  * AIcrowd rank: `6`
+  * Applied constrast for test/validation set: coefficient `1×`
+  * Training epochs: 222
+  * Augmentation function used: `augment_data` (see `data_augmentation.py`)
