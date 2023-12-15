@@ -1,9 +1,14 @@
 # Project Road Segmentation
 
+## Git LFS
+
+This project uses Git LFS. Make sure to install it before cloning the repository. See [Git LFS](https://git-lfs.com/).
+
 ## Project architecture
 
 The project is organized as follows:
-* The main part is inside the `main.ipynb` notebook.
+* The main part for training is inside the `main.ipynb` notebook.
+* `predict.py` is used to generate predictions on the test set, with the best model (UNet, see `submissions/README.md`).
 * Content of the project is in the `src/road_segmentation` folder.
   * `models` contains the different models used.
   * `utils` contains the different utilities used.
