@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from .unet import UNet
 
+# We apply a base Unet model multiple times in a row, conditioned on a previous prediction.
 class RefinedUnet(nn.Module):
     def __init__(self, n=3) -> None:
         super().__init__()

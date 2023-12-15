@@ -1,10 +1,9 @@
 from road_segmentation.mask_to_submission import masks_to_submission
-from road_segmentation.augmentation import augment_contrast
+from road_segmentation.utils.augmentation import augment_contrast
 from .image import img_float_to_uint8, load_image
 
 from PIL import Image
 import torch.nn as nn
-import numpy as np
 
 NUMBER_OF_TEST = 50
 

@@ -34,6 +34,8 @@ conda env update --file environment.yml --prune
 pip install -e .
 ```
 
+**Note**: make sure to install pytorch with the right version for your system. You can follow the instructions [here](https://pytorch.org/get-started/locally/).
+
 ### List of dependencies
 
 * `pytorch`
