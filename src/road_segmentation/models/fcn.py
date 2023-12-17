@@ -1,7 +1,7 @@
 from torch import nn
 
 class FCN(nn.Module):
-    def __init__(self, layers=4):
+    def __init__(self, layers=5):
         super(FCN, self).__init__()
         
         self.layers = layers
@@ -22,7 +22,7 @@ class FCN(nn.Module):
             nn.ConvTranspose2d(64, 16, stride=2, kernel_size=4, padding=1),
             nn.LeakyReLU(0.1),
             nn.ConvTranspose2d(16, 1, stride=2, kernel_size=4, padding=1),
-            nn.Sigmoid()
+            nn.LeakyReLU(0.1)
         )
         
         self.refinements_conv = nn.ModuleList([
@@ -50,8 +50,8 @@ class FCN(nn.Module):
         ])
 
     def forward(self, x):
-        x = self.conv(x)
-        x = self.unconv(x)
+        x = self.init_conv(x)
+        x = self.init_unconv(x)
         
         for i in range(self.layers):
             x = self.refinements_conv[i](x)
