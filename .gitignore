@@ -3,5 +3,5 @@
 .DS_STORE
 __pycache__
 checkpoints/temp
-submissions/temp
+submissions/temp/*.png
 trash
