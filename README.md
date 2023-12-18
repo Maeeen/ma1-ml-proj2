@@ -30,9 +30,10 @@ First, make sure to clone the repository and to place you on the `main` branch.
 Dependencies can be managed by conda in the following way. This ensures reproducibility of the environment at the libraries level.
 
 ```
-conda install -n road-segmentation python=3.10
+conda env create -f environment.yml
 conda activate road-segmentation
-conda env update --file environment.yml --prune
+
+# Install pytorch, torchvision, torchaudio, torchinfo
 
 pip install -e .
 ```
