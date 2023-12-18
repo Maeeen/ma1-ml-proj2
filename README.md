@@ -35,19 +35,12 @@ conda activate road-segmentation
 
 # Install pytorch, torchvision, torchaudio, torchinfo
 
+conda install -c conda-forge torchinfo
+
 pip install -e .
 ```
 
 **Note**: make sure to install pytorch with the right version for your system. You can follow the instructions [here](https://pytorch.org/get-started/locally/).
-
-### List of dependencies
-
-* `pytorch`
-* `torchvision`
-* `numpy`
-* `scikit-learn`
-* `PIL`
-* `scipy`
 
 ## Credits
 

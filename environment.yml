@@ -11,3 +11,4 @@ dependencies:
   - jupyter
   - widgetsnbextension
   - scikit-learn
+  - tqdm
