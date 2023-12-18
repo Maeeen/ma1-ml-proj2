@@ -1,4 +1,4 @@
-# Submissions and pre-trained models
+# Submissions and trained models
 
 CSV files for the different submissions.
 

@@ -5,18 +5,21 @@
 This project uses Git LFS. Make sure to install it before cloning the repository. See [Git LFS](https://git-lfs.com/).
 
 ## Project architecture
-
-The project is organized as follows:
-* The main part for training is inside the `main.ipynb` notebook.
-* `predict.py` is used to generate predictions on the test set, with the best model (UNet, see `submissions/README.md`).
-* Content of the project is in the `src/road_segmentation` folder.
-  * `models` contains the different models used.
-  * `utils` contains the different utilities used.
-  * `root` of `src/road_segmentation` contains diverse functions.
-
-## Submissions and pre-trained models
-
-About the submissions, see the `submissions/README.md` file. Here lies as well pre-trained models.
+The project is organized as follows
+```
+/checkpoints                # Saved model checkpoints for different architectures
+/data                       # Train and test data
+/notebooks                  # Past experiments
+/src/road_segmentation      # Source code
+  /models                   # Models definitions
+  /utils                    # Utility functions
+  mask_to_submission.py     # Somes functions related to submissions
+  submission_to_mask.py     # Somes functions related to submissions
+/submissions                # Generated submission files for AIcrowd
+infos.md                    # Submissions and checkpoints descriptions
+main.ipynb                  # Training code
+predict.py                  # Generate predictions on the test set using a trained model. Using Unet by default.
+```
 
 ## Setting up the environment
 
