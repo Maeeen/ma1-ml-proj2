@@ -2,7 +2,7 @@
 
 ## Git LFS
 
-This project uses Git LFS. Make sure to install it before cloning the repository. See [Git LFS](https://git-lfs.com/).
+This project uses Git LFS. Make sure to install it before cloning the repository. See [Git LFS](https://git-lfs.com/). If the bandwidth is exceeded, you can use the mirror on Gitlab: [gitlab.com/Maeeen/ma1-ml-proj2](https://gitlab.com/Maeeen/ma1-ml-proj2).
 
 ## Project architecture
 The project is organized as follows
