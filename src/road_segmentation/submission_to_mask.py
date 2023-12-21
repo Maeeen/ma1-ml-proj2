@@ -1,9 +1,5 @@
-#!/usr/bin/python
-import os
-import sys
 import Image
 import math
-import matplotlib.image as mpimg
 import numpy as np
 
 label_file = 'dummy_submission.csv'
@@ -51,4 +47,3 @@ def reconstruct_from_labels(image_id):
 
 for i in range(1, 5):
     reconstruct_from_labels(i)
-   

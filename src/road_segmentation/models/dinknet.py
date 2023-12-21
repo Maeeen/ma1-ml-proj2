@@ -3,7 +3,6 @@
 """
 Codes of LinkNet based on https://github.com/snakers4/spacenet-three
 """
-import torch
 import torch.nn as nn
 from torch.autograd import Variable
 from torchvision import models

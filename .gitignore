@@ -1,6 +1,7 @@
 .ipynb_checkpoints
 .vscode
+.DS_STORE
 __pycache__
-checkpoints/temp/*
+checkpoints/temp/*.pt
+submissions/temp/*.png
 trash
-submissions/temp/*
